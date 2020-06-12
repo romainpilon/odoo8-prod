@@ -3,7 +3,7 @@ LABEL maintainer="romain.p@tahitiwebdesign.com"
 
 ENV ODOO_RPM_URL https://nightly.odoo.com/8.0/nightly/rpm/odoo_8.0.20171001.noarch.rpm
 ENV ODOO_CFG /etc/odoo/openerp-server.conf
-ENV WKHTMLTOX_URL https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.1/wkhtmltox-0.12.1_linux-centos7-amd64.rpm
+ENV WKHTMLTOX_URL https://github.com/wkhtmltopdf/packaging/releases/download/0.12.1.4-2/wkhtmltox-0.12.1.4-2.centos7.x86_64.rpm
 
 # Installation de la locale FR
 RUN localedef -i fr_FR -f UTF-8 fr_FR.UTF-8;
