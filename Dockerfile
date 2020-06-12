@@ -1,5 +1,5 @@
 FROM tahitiwebdesign/centos7-without-systemd
-LABEL maintainer="romain.p@tahitiwebdesign.com"
+LABEL maintainer="dev@tahitiwebdesign.com"
 
 ENV ODOO_RPM_URL https://nightly.odoo.com/8.0/nightly/rpm/odoo_8.0.20171001.noarch.rpm
 ENV ODOO_CFG /etc/odoo/openerp-server.conf
@@ -13,13 +13,12 @@ RUN yum -y swap -- remove fakesystemd -- install systemd systemd-libs && \
 	yum clean all && yum -y update && yum -y install epel-release && \
 	yum -y update && yum -y install python-gevent tree less vim \
 	python-pip python-devel git libjpeg-devel libtiff-devel gcc \
-	libxslt-devel libxml2-devel graphviz openldap-devel;
+	libxslt-devel libxml2-devel graphviz openldap-devel postgresql;
 
 COPY ./entrypoint.sh /
 
 # Installation de xlwt pour python et les rapport excel
 RUN pip install xlwt
-
 
 # Installation de odoo
 # et creation du repertoire des addons metier
@@ -32,7 +31,7 @@ RUN curl -Lo wkhtmltox.rpm $WKHTMLTOX_URL && \
 	yum -y localinstall wkhtmltox.rpm && \
 	ln -s /usr/local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf;
 
-EXPOSE 8089 8071
+EXPOSE 8069 8071
 
 VOLUME ["/etc/odoo", "/var/lib/odoo", "/var/log/odoo/", "/mnt/extra-addons"]
 
